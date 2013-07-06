@@ -23,15 +23,9 @@ bool ThreadPool::schedule(Task *t)
         return false;
     }
     else{
-            {
-            unique_lock<mutex> m;
-            q.push(t);
-            cvQueueNonEmpty.notify_one();
-            return true;
-            }
+        unique_lock<mutex> m;
+        q.push(t);
+        cvQueueNonEmpty.notify_one();
+        return true;
     }
-}
-
-void ThreadPool::stop()
-{
 }
